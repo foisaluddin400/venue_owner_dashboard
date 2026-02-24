@@ -132,7 +132,7 @@ const Header = () => {
     navigate("/login");
   };
   return (
-    <div className="bg-white text-black pt-5">
+    <div className="bg-white text-black pt-3">
       <div className="flex justify-between">
         <div className="lg:hidden ">
           <div className="py-3 pl-4">
