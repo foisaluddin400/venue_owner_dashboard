@@ -6,6 +6,7 @@ import { MdDelete } from "react-icons/md";
 import { Navigate } from "../../Navigate";
 import AddIco from "../../components/icon/AddIco";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const ProductManage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -79,9 +80,11 @@ const ProductManage = () => {
       align: "end",
       render: (_, record) => (
         <div className="flex justify-end gap-3 items-center">
-          <button className="w-[36px] h-[36px] text-lg bg-[#22C55E1A] flex justify-center items-center text-[#22C55E] rounded cursor-pointer">
-            <LuEye />
-          </button>
+          <Link to={`/dashboard/productManagement/details/${record.key}`}>
+            <button className="w-[36px] h-[36px] text-lg bg-[#22C55E1A] flex justify-center items-center text-[#22C55E] rounded cursor-pointer">
+              <LuEye />
+            </button>
+          </Link>
 
           <button className="w-[36px] h-[36px] text-lg bg-[#EF44441A] flex justify-center items-center text-[#EF4444] rounded cursor-pointer">
             <RiDeleteBin6Line />
@@ -115,9 +118,10 @@ const ProductManage = () => {
           />
 
           <div>
+            <Link to="/dashboard/productManagement/add">
             <button className="bg-gradient-to-tr w-[185px] from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-lg flex items-center gap-3">
             <AddIco /> Add New Product
-          </button>
+          </button></Link>
           </div>
         </div>
       </div>

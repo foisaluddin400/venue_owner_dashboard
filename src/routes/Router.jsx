@@ -24,6 +24,8 @@ import Earning from "../page/earning/Earning";
 import VenueProfile from "../page/venuwProfile/VenueProfile";
 import ManageProfile from "../page/manageProfile/ManageProfile";
 import HelpSupport from "../page/helpSupport/HelpSupport";
+import ProductDetails from "../page/product/ProductDetails";
+import AddProduct from "../page/product/AddProduct";
 
 
 export const router = createBrowserRouter([
@@ -48,8 +50,16 @@ export const router = createBrowserRouter([
         element: <ProductManage></ProductManage>,
       },
       {
+        path: "/dashboard/productManagement/details/:id",
+        element: <ProductDetails></ProductDetails>  ,
+      },
+      {
         path: "/dashboard/ManageShifts",
         element: <ManageShifts></ManageShifts>,
+      },
+      {
+        path: "/dashboard/productManagement/add",
+        element: <AddProduct></AddProduct>,
       },
        {
         path: "/dashboard/earning",
