@@ -19,7 +19,7 @@ import Notification from "../page/Notification/Notification";
 import About from "../page/Settings/About";
 import Login from "../Auth/Login";
 import ProductManage from "../page/product/ProductManage";
-import ManageShifts from "../page/ManageShifts/ManageShifts";
+import ManageShifts from "../page/manageShifts/ManageShifts";
 import Earning from "../page/earning/Earning";
 import VenueProfile from "../page/venuwProfile/VenueProfile";
 import ManageProfile from "../page/manageProfile/ManageProfile";
