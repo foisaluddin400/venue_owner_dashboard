@@ -67,47 +67,35 @@ const AddCategories = ({ openAddModal, setOpenAddModal }) => {
       footer={null}
       width={600}
     >
-      <div className="mb-20 mt-4">
+      <div className="bg-[#0F0B1A] mx-[-25px] mt-[-20px]  mb-[-45px] rounded-lg p-4 border border-[#2A2448]">
         <div>
-          <div className="font-bold text-center mb-11">+ Add Category</div>
+          <div className="font-bold text-center text-white">+ Add Category</div>
 
           <Form
             form={form}
             layout="vertical"
             onFinish={handleSubmit}
-            className="px-2"
+            className="custom-form"
           >
+            {/* Category Name */}
             <Form.Item
               label="Category Name"
               name="name"
               rules={[{ required: true, message: "Please input name!" }]}
             >
-              <Input
-                placeholder="Enter title"
-                style={{ height:"40px" }}
-              />
+              <Input placeholder="Enter title" className="custom-input" />
             </Form.Item>
 
-            <Form.Item label="Photos">
-              <Upload
-                listType="picture-card"
-                fileList={fileList}
-                onChange={onChange}
-                onPreview={onPreview}
-                multiple={true}
-              >
-                {fileList.length < 1 && "+ Upload"}
-              </Upload>
-            </Form.Item>
+            {/* Upload */}
 
-            {/* Save Button */}
+            {/* Submit */}
             <Form.Item>
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-2 mt-2 bg-[#E63946] text-white rounded-md"
+                className="w-full bg-gradient-to-tr from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-lg"
               >
-                {loading ? <Spin size="small" /> : "Add"}
+                {loading ? <Spin size="small" /> : "Add Category"}
               </button>
             </Form.Item>
           </Form>

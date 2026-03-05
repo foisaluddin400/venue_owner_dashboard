@@ -73,52 +73,53 @@ const EditCategories = ({ editModal, setEditModal, selectedCategory }) => {
   };
 
   return (
-    <Modal
+     <Modal
       centered
-      open={editModal}
+     open={editModal}
       onCancel={handleCancel}
       footer={null}
       width={600}
-      destroyOnClose // ✅ clears content when modal closes
+     
     >
-      <div className="mb-20 mt-4">
-        <div className="font-bold text-center mb-11">Edit Category</div>
-        <Form
-          form={form}
-          layout="vertical"
-          onFinish={handleSubmit}
-          className="px-2"
-        >
-          <Form.Item
-            label="Category Name"
-            name="name"
-            rules={[{ required: true, message: "Please input title" }]}
-          >
-            <Input placeholder="Enter title" style={{ height: "40px" }} />
-          </Form.Item>
+      <div className="bg-[#0F0B1A] mx-[-25px] mt-[-20px]  mb-[-45px] rounded-lg p-4 border border-[#2A2448]">
+        <div>
+          <div className="font-bold text-center text-white">+ Edit Category</div>
 
-          <Form.Item label="Photos">
-            <Upload
-              listType="picture-card"
-              fileList={fileList}
-              onChange={onChange}
-              onPreview={onPreview}
-              multiple={false}
-            >
-              {fileList.length < 1 && "+ Upload"}
-            </Upload>
-          </Form.Item>
+          <Form
+  form={form}
+  layout="vertical"
+  onFinish={handleSubmit}
+    className="custom-form"
+>
 
-          <Form.Item>
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-2 mt-2 bg-[#E63946] text-white rounded-md"
-            >
-              {loading ? <Spin size="small" /> : "Update"}
-            </button>
-          </Form.Item>
-        </Form>
+  {/* Category Name */}
+  <Form.Item
+    label="Category Name"
+    name="name"
+    rules={[{ required: true, message: "Please input name!" }]}
+  >
+    <Input
+      placeholder="Enter title"
+      className="custom-input"
+    />
+  </Form.Item>
+
+  {/* Upload */}
+
+
+  {/* Submit */}
+  <Form.Item>
+    <button
+      type="submit"
+      disabled={loading}
+      className="w-full bg-gradient-to-tr from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-lg"
+    >
+      {loading ? <Spin size="small" /> : "Edit Category"}
+    </button>
+  </Form.Item>
+
+</Form>
+        </div>
       </div>
     </Modal>
   );

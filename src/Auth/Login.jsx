@@ -40,16 +40,16 @@ const Login = () => {
   
   return (
  <div className="flex justify-center items-center min-h-screen px-4 lg:px-0">
-      <div className="w-full max-w-lg  lg:p-8 p-4 border">
+      <div className="w-full max-w-lg  lg:p-8 p-4 border border-[#2A2448] rounded-lg bg-[#0F0B1A]">
         {/* Title */}
-        <h2 className="text-2xl font-semibold text-gray-900 mb-2">Sign In</h2>
-        <p className="text-gray-600 mb-6 text-sm">
+        <h2 className="text-2xl font-semibold text-white mb-2">Sign In</h2>
+        <p className="text-gray-400 mb-6 text-sm">
           Enter your email address or choose a different way to sign in to
           Custom Ink.
         </p>
 
         {/* Ant Design Form */}
-        <Form form={form} layout="vertical" onFinish={onFinish}>
+        <Form form={form} layout="vertical" onFinish={onFinish} className="custom-form">
           {/* Email */}
           <Form.Item
             label="Enter Email Address"
@@ -60,7 +60,7 @@ const Login = () => {
             ]}
           >
             <Input
-              style={{ height: "50px" }}
+              className="custom-input"
               placeholder="Enter Email Address"
             />
           </Form.Item>
@@ -71,8 +71,8 @@ const Login = () => {
             rules={[{ required: true, message: "Please input your password!" }]}
           >
             <Input.Password
-              style={{ height: "50px" }}
-              className=""
+             className="custom-input"
+              
               placeholder="••••••••"
             />
           </Form.Item>
@@ -93,9 +93,9 @@ const Login = () => {
           <Form.Item>
             <button
               htmlType="submit"
-              className="w-full bg-red-500 py-3 text-white rounded-md hover:bg-primary-dark transition-colors"
+              className="w-full bg-gradient-to-tr  from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-full"
             >
-              Continue
+              Login
             </button>
           </Form.Item>
         </Form>

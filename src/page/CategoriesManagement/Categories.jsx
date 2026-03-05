@@ -7,6 +7,7 @@ import AddCategories from "./AddCategories";
 import EditCategories from "./EditCategories";
 import { Navigate } from "../../Navigate";
 import { SearchOutlined } from "@ant-design/icons";
+import AddIco from "../../components/icon/AddIco";
 
 const Categories = () => {
   const [deleteCategory] = useState(); // Placeholder, not used
@@ -133,19 +134,7 @@ const Categories = () => {
       key: "sl",
       render: (_, __, index) => (currentPage - 1) * pageSize + (index + 1),
     },
-    {
-      title: "Image",
-      dataIndex: "image",
-      key: "image",
-      align: "center",
-      render: (_, record) => (
-        <img
-          src={record.imageUrl}
-          alt={record.name}
-          className="w-10 h-10 object-cover rounded mx-auto"
-        />
-      ),
-    },
+   
     {
       title: "Category Name",
       dataIndex: "name",
@@ -160,13 +149,13 @@ const Categories = () => {
         <div className="flex gap-2 justify-end">
           <div
             onClick={() => handleEdit(record)}
-            className="w-[36px] h-[36px] text-lg bg-[#007BFF] flex justify-center items-center text-white rounded cursor-pointer"
+            className="w-[36px] h-[36px] text-lg bg-[#22C55E1A] flex justify-center items-center text-[#22C55E] rounded cursor-pointer"
           >
             <MdOutlineModeEdit />
           </div>
           <div
             onClick={() => handleDeleteCategory(record._id)}
-            className="w-[36px] h-[36px] text-lg bg-[#E63946] flex justify-center items-center text-white rounded cursor-pointer"
+            className="w-[36px] h-[36px] text-lg bg-[#EF44441A] flex justify-center items-center text-[#EF4444] rounded cursor-pointer"
           >
             <RiDeleteBin6Line />
           </div>
@@ -176,26 +165,18 @@ const Categories = () => {
   ];
 
   return (
-    <div className="bg-white p-3 h-[87vh]">
+    <div className=" p-3 h-[87vh]">
       <div className="flex justify-between mb-4">
-        <Navigate title={"Category"} />
+        <Navigate title={"Manage Categories"} />
         <div className="flex gap-5">
-          <Input
-            onChange={(e) => {
-              setSearch(e.target.value);
-              setCurrentPage(1); // Reset to first page on search
-            }}
-            placeholder="Search by name..."
-            prefix={<SearchOutlined />}
-            style={{ maxWidth: "500px", height: "40px" }}
-          />
+         
           <div>
             {" "}
             <button
               onClick={() => setOpenAddModal(true)}
-              className="bg-[#E63946] w-[150px] text-white py-2 rounded"
+              className="bg-gradient-to-tr from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-lg flex items-center gap-3"
             >
-              Add Category
+             <AddIco/> Add New Category
             </button>
           </div>
         </div>

@@ -132,7 +132,7 @@ const Header = () => {
     navigate("/login");
   };
   return (
-    <div className="bg-white text-black pt-3">
+    <div className="bg-[#0F0B1A] border-b border-[#2A2448] text-black pt-3">
       <div className="flex justify-between">
         <div className="lg:hidden ">
           <div className="py-3 pl-4">
@@ -145,7 +145,7 @@ const Header = () => {
         <div className="flex gap-8 p-1 px-6">
           <div className="relative">
             <Link to={"/dashboard/Settings/notification"}>
-              <div className="w-[45px] h-[45px] flex items-center justify-center text-xl rounded-full bg-gray-100 text-black ">
+              <div className="w-[45px] h-[45px] flex items-center justify-center text-xl rounded-lg bg-[#2A2448] text-[#822CE7] ">
                 <span>
                   <LuBell />
                 </span>
@@ -262,26 +262,26 @@ const Header = () => {
               </div>
             </Drawer>
 
-            <span className="absolute top-0 right-0 -mr-2  w-5 h-5 bg-red-600 text-white text-xs flex items-center justify-center rounded-full">
+            <span className="absolute top-0 right-0 -mr-2  w-5 h-5 bg-[#822CE7] text-white text-xs flex items-center justify-center rounded-full">
               0
             </span>
           </div>
 
-          <Link to={"/dashboard/Settings/profile"}>
+         
             <div className="flex gap-3">
               <div>
                 <img
-                  className="w-[45px] h-[45px]"
-                  src={profilee}
+                  className="w-[45px] h-[45px] rounded-lg"
+                  src={'https://i.pravatar.cc/150?img=1'}
                   alt="profile"
                 />
               </div>
-              <div className="text-end">
+              <div className=" text-white">
                 <h3>Your Name</h3>
-                <h4 className="text-sm">Admin</h4>
+                <h4 className="bg-[#22C55E33] px-2 text-[#22C55E] rounded-full ">Venue Owner</h4>
               </div>
             </div>
-          </Link>
+       
         </div>
       </div>
     </div>

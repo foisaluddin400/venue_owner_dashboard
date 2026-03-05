@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 
-
+:root{
+  background-color: #0F0B1A;
+}
 
 .children-menu {
   overflow: hidden;
@@ -17,40 +19,42 @@
 .no-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
-
-
-
-
-
-
-
-select option {
-  background-color: #EDC4C5;
-
+.custom-table .ant-table-thead > tr > th::before {
+  background-color: #2A2448 !important; /* তোমার পছন্দের color */
+}
+.custom-table .ant-table-thead > tr > th {
+  background-color: #822CE71A;
+  color: white;
+  font-weight: 600;
+  padding: 20px 15px;
+}
+.custom-table  {
+  border-left: 1px solid #2A2448;
+  border-right: 1px solid #2A2448;
+  border-radius: 8px 8px 0 0;
+  
+}
+/* remove borders */
+.custom-table .ant-table {
+  background: transparent;
 }
 
-
-
-
-
-/* Remove all borders from the Ant Design Table */
-.ant-table {
+.custom-table .ant-table-thead > tr > th {
   border: none !important;
 }
 
-.ant-table-container {
-  border: none !important;
+.custom-table .ant-table-tbody > tr > td {
+  border-bottom: 1px solid #2A2448 !important;
+  color: white;
 }
 
-.ant-table-thead > tr > th {
-  border: none !important;
-  background: #f5f5f5; /* Optional: Header Background */
-}
 
-.ant-table-tbody > tr > td {
-  border: none !important;
-}
 
+
+/* row hover */
+.custom-table .ant-table-tbody > tr:hover > td {
+  background: #1E1835 !important;
+}
 .ant-pagination {
   border: none !important;
 }
@@ -112,7 +116,7 @@ select option {
 }
 
 .custom-tabs .ant-tabs-ink-bar {
-  background-color: red !important; /* Active ট্যাবের নিচের বর্ডার লাল হবে */
+  background-color: rgb(224, 63, 63) !important; /* Active ট্যাবের নিচের বর্ডার লাল হবে */
 }
 
 
@@ -133,5 +137,72 @@ select option {
   border-bottom: 2px solid red !important; /* শুধুমাত্র অ্যাক্টিভ ট্যাবের জন্য বর্ডার */
 }
 
+
+
+
+
+
+
+
+/* Modal */
+.anticon {
+    display: inline-flex;
+    align-items: center;
+    color: white;
+    border:1px solid white;
+    padding: 2px;
+    border-radius: 5px;
+    font-style: normal;
+    line-height: 0;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -0.125em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.custom-form .ant-form-item-label > label {
+  color: white !important;
+  font-weight: 500;
+  font-size: 14px;
+}
+/* Input Design */
+.custom-input {
+  height: 40px !important;
+  background-color: #2A2448 !important;
+  border-color: #2A2448 !important;
+  color: white !important;
+}
+
+/* Placeholder color */
+.custom-input::placeholder {
+  color: white !important;
+  opacity: 0.7;
+}
+
+/* Upload container */
+.custom-upload .ant-upload {
+  background: #2A2448 !important;
+  border: 1px dashed #6C5DD3 !important;
+  width: 100% !important;
+  height: 120px !important;
+  border-radius: 10px;
+}
+
+/* Upload text */
+.upload-box {
+  color: white;
+  text-align: center;
+}
+
+.upload-box p {
+  font-size: 26px;
+  margin: 0;
+}
+
+.upload-box span {
+  font-size: 14px;
+  opacity: 0.8;
+}
 
 

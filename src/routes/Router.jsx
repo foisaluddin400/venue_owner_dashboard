@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../layout/dashboardLayout/DashboardLayout";
 import Dashboard from "../components/Dashboard/Dashboard";
 import UserManagement from "../page/UserManagement/UserManagement";
-import CreatorManagement from "../page/CreatorManagement/CreatorManagement";
 
 import Subscription from "../page/Subscription/Subscription";
 
@@ -19,6 +18,12 @@ import ResetPass from "../Auth/ResetPass";
 import Notification from "../page/Notification/Notification";
 import About from "../page/Settings/About";
 import Login from "../Auth/Login";
+import ProductManage from "../page/product/ProductManage";
+import ManageShifts from "../page/ManageShifts/ManageShifts";
+import Earning from "../page/earning/Earning";
+import VenueProfile from "../page/venuwProfile/VenueProfile";
+import ManageProfile from "../page/manageProfile/ManageProfile";
+import HelpSupport from "../page/helpSupport/HelpSupport";
 
 
 export const router = createBrowserRouter([
@@ -38,9 +43,29 @@ export const router = createBrowserRouter([
         path: "/dashboard/UserManagement",
         element: <UserManagement></UserManagement>,
       },
+     {
+        path: "/dashboard/productManagement",
+        element: <ProductManage></ProductManage>,
+      },
       {
-        path: "/dashboard/CreatorManagement",
-        element: <CreatorManagement></CreatorManagement>,
+        path: "/dashboard/ManageShifts",
+        element: <ManageShifts></ManageShifts>,
+      },
+       {
+        path: "/dashboard/earning",
+        element: <Earning></Earning>,
+      },
+      {
+        path: "/dashboard/VenueProfile",
+        element: <VenueProfile></VenueProfile>,
+      },
+      {
+        path: "/dashboard/HelpSupport",
+        element: <HelpSupport></HelpSupport>,
+      },
+      {
+        path: "/dashboard/ManageProfile",
+        element: <ManageProfile></ManageProfile>,
       },
       {
         path: "/dashboard/CategoriesManagement/Categories",

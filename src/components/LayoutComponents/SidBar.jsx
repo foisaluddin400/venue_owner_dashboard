@@ -14,6 +14,13 @@ import { useDispatch } from "react-redux";
 import { FiUser } from "react-icons/fi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { TbCategory2 } from "react-icons/tb";
+import CategoryIco from "../icon/CategoryIco";
+import ProductIco from "../icon/ProductIco";
+import ShiftsIco from "../icon/ShiftsIco";
+import EarningIco from "../icon/EarningIco";
+import BarProfileIco from "../icon/BarProfileIco";
+import ManageProfileIco from "../icon/ManageProfileIco";
+import SupportIco from "../icon/SupportIco";
 
 
 const items = [
@@ -24,70 +31,56 @@ const items = [
     link: "/",
   },
   {
-    key: "userManagement",
-    label: "User Management",
-    icon: <FiUser />,
-    link: "/dashboard/UserManagement",
+    key: "categoryManagement",
+    label: "Manage Categories",
+    icon: <CategoryIco color={'white'}></CategoryIco>,
+    link: "/dashboard/CategoriesManagement/Categories",
+  },
+
+{
+    key: "productManagement",
+    label: "Product Management",
+    icon: <ProductIco color={'white'}></ProductIco>,
+    link: "/dashboard/productManagement",
+  },
+{
+    key: "manageShifts",
+    label: "Manage Shifts",
+    icon: <ShiftsIco color={'white'}></ShiftsIco>,
+    link: "/dashboard/ManageShifts",
+  },
+{
+    key: "earning",
+    label: "Earning",
+    icon: <EarningIco color={'white'}></EarningIco>,
+    link: "/dashboard/earning",
+  },
+
+  {
+    key: "venueProfile",
+    label: "Venue Profile",
+    icon: <BarProfileIco color={'white'}></BarProfileIco>,
+    link: "/dashboard/VenueProfile",
   },
 
    
+  
   {
-    key: "categoriesManagement",
-    label: "Categories Management",
-    icon: <TbCategory2 />,
-    link: "/dashboard/CategoriesManagement/Categories",
-    children: [
-      {
-        key: "categories",
-        label: "Categories",
-        link: "/dashboard/CategoriesManagement/Categories",
-      },
-      {
-        key: "subcategory",
-        label: "Subcategory",
-        link: "/dashboard/CategoriesManagement/Subcategory",
-      },
-    ],
+    key: "manageProfile",
+    label: "Manage Profile",
+    icon: <ManageProfileIco />,
+    link: "/dashboard/ManageProfile",
   },
+
   {
-    key: "subscription",
-    label: "Subscription",
-    icon: <TbCategory2 />,
-    link: "/dashboard/Subscription",
+    key: "helpSupport",
+    label: "Help & Support",
+    icon: <SupportIco />,
+    link: "/dashboard/HelpSupport",
   },
-  {
-    key: "settings",
-    label: "Settings",
-    icon:<IoSettingsOutline />,
-    link: "/dashboard/Settings/profile",
-    children: [
-      {
-        key: "profile",
-        label: "Profile",
-        link: "/dashboard/Settings/profile",
-      },
-      {
-        key: "terms",
-        label: "Terms & Condition",
-        link: "/dashboard/Settings/Terms&Condition",
-      },
-      {
-        key: "privacy",
-        label: "Privacy Policy",
-        link: "/dashboard/Settings/PrivacyPolicy",
-      },
-      {
-        key: "faq",
-        label: "FAQ",
-        link: "/dashboard/Settings/FAQ",
-      },
-      {
-        key: "about",
-        label: "About Us",
-        link: "/dashboard/Settings/aboutUs",
-      },
-    ],
-  },
+
+
+  
 ];
 
 const SidBar = () => {
@@ -141,19 +134,19 @@ const SidBar = () => {
   };
 
   return (
-    <div className="custom-sidebar h-[100vh] bg-[#18212b] text-gray-400">
-      <div className="custom-sidebar-logo flex justify-center">
-        <img src={logo} alt="Logo" className="w-[80px]" />
+    <div className="custom-sidebar h-[100vh] bg-[#0F0B1A] text-white border-r border-[#2A2448] ">
+      <div className="custom-sidebar-logo py-8 flex justify-center">
+        <img src={logo} alt="Logo" className="w-[130px]" />
       </div>
       <div className="menu-items">
        {items.map((item) => (
           <div key={item.key}>
             <Link
               to={item.link}
-              className={`my-2 py-[10px] px-4 flex items-center cursor-pointer ${
+              className={`my-4 py-[10px] px-4 flex items-center cursor-pointer ${
                 selectedKey === item.key
-                  ? "bg-gradient-to-r from-[#6e1515] border-l-2 border-green-500 text-white"
-                  : "hover:bg-gradient-to-r hover:from-[#470e0e]"
+                  ? "bg-gradient-to-tr from-[#822CE7] to-[#BB82FF] text-white shadow-md mx-3 rounded-lg "
+                  : "hover:bg-gradient-to-tr hover:from-[#822CE7] mx-3 rounded-lg"
               }`}
               onClick={(e) => {
                 if (item.children) {
