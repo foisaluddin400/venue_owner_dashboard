@@ -3,7 +3,7 @@ import DashboardLayout from "../layout/dashboardLayout/DashboardLayout";
 import Dashboard from "../components/Dashboard/Dashboard";
 import UserManagement from "../page/UserManagement/UserManagement";
 
-import Subscription from "../page/Subscription/Subscription";
+
 
 import Profile from "../page/Settings/Profile";
 import TermsCondition from "../page/Settings/TermsCondition";
@@ -129,10 +129,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/CategoriesManagement/Subcategory",
         element: <Subcategory></Subcategory>,
       },
-      {
-        path: "/dashboard/Subscription",
-        element: <Subscription></Subscription>,
-      },
+     
       {
         path: "/dashboard/Settings/profile",
         element: <Profile></Profile>,
