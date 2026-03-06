@@ -2,6 +2,7 @@ import React from "react";
 import { Navigate } from "../../Navigate";
 import { FiEye, FiDownload } from "react-icons/fi";
 import QRCode from "react-qr-code"; // optional if you want dynamic QR
+import { Link } from "react-router-dom";
 
 const ManageProfile = () => {
   const venue = {
@@ -57,12 +58,14 @@ const ManageProfile = () => {
 
       {/* Update Details Button */}
       <div className="flex gap-4  mt-6">
+        <Link to={'/dashboard/updateProfile'}>
         <button className="bg-gradient-to-tr w-[185px] from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-full">
           Update Details
-        </button>
-        <button className="bg-gradient-to-tr w-[185px] from-[#DC3545] to-[#FE4C5D] text-white shadow-md px-3 py-2 rounded-full">
-          Update Password
-        </button>
+        </button></Link>
+         <Link to={'/dashboard/updatePassword'}>
+            <button className="bg-gradient-to-tr w-[185px] from-[#DC3545] to-[#FE4C5D] text-white shadow-md px-3 py-2 rounded-full">
+              Update Password
+            </button></Link>
       </div>
     </div>
   );

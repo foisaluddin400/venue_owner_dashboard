@@ -2,6 +2,7 @@ import React from "react";
 import { Navigate } from "../../Navigate";
 import { FiEye, FiDownload } from "react-icons/fi";
 import QRCode from "react-qr-code"; // optional if you want dynamic QR
+import { Link } from "react-router-dom";
 
 const ProductDetails = () => {
   const venue = {
@@ -57,9 +58,11 @@ const ProductDetails = () => {
 
       {/* Update Details Button */}
       <div className="mt-6">
-        <button className="bg-gradient-to-tr w-[185px] from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-full">
-          Update Product
-        </button>
+        <Link to="/dashboard/productManagement/edit/1">
+          <button className="bg-gradient-to-tr w-[185px] from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-full">
+            Edit Product
+          </button>
+        </Link>
       </div>
     </div>
   );

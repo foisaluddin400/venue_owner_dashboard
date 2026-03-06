@@ -4,6 +4,7 @@ import { LuEye } from "react-icons/lu";
 import { Navigate } from "../../Navigate";
 import AddIco from "../../components/icon/AddIco";
 import EyeIco from "../../components/icon/EyeIco";
+import { Link } from "react-router-dom";
 
 const ManageShifts = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -77,9 +78,11 @@ const ManageShifts = () => {
       align: "end",
       render: (_, record) => (
         <div className="flex justify-end">
-          <button className="w-[36px] h-[36px] text-lg bg-[#22C55E1A] flex justify-center items-center text-[#22C55E] rounded cursor-pointer">
+          <Link to={`/dashboard/ManageShifts/details/${record.key}`}>
+            <button className="w-[36px] h-[36px] text-lg bg-[#22C55E1A] flex justify-center items-center text-[#22C55E] rounded cursor-pointer">
             <EyeIco />
           </button>
+          </Link>
         </div>
       ),
     },
@@ -113,9 +116,11 @@ const ManageShifts = () => {
               </select>
             </div>
 
+            <Link to="/dashboard/ManageShifts/add_request">
             <button className="bg-gradient-to-tr w-[185px] from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-lg flex items-center gap-3">
               <AddIco /> Add New Request
             </button>
+            </Link>
           </div>
         </div>
       </div>

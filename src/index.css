@@ -166,6 +166,12 @@
   font-weight: 500;
   font-size: 14px;
 }
+
+.custom-input input::placeholder {
+  color: white !important;
+  opacity: 0.7;
+}
+
 /* Input Design */
 .custom-input {
   height: 40px !important;
@@ -173,7 +179,13 @@
   border-color: #2A2448 !important;
   color: white !important;
 }
+.custom-input .ant-picker-suffix {
+  color: white !important;
+}
 
+.custom-input .ant-picker-separator {
+  color: white !important;
+}
 /* Placeholder color */
 .custom-input::placeholder {
   color: white !important;

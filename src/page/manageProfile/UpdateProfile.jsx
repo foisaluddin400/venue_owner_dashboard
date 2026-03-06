@@ -13,7 +13,7 @@ import { PlusOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
-const AddProduct = () => {
+const UpdateProfile = () => {
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
 
@@ -47,13 +47,13 @@ const AddProduct = () => {
 
   return (
     <div className="p-3 h-[87vh] overflow-auto">
-      <Navigate title="Add Product" />
+      <Navigate title="Manage Profile" />
 
       <div className="mt-6 border text-white border-[#2A2448] rounded-xl space-y-3">
         <div className="border-b border-[#2A2448] p-3">
-          <h1 className="text-xl font-semibold pb-1">Add New Product</h1>
+          <h1 className="text-xl font-semibold pb-1">Update Profile</h1>
           <p className="text-[#C9C6D6]">
-            Enter product details to display on your Venue menu.
+        Review and update your details as needed.
           </p>
         </div>
 
@@ -77,7 +77,7 @@ const AddProduct = () => {
                 {fileList.length < 5 && (
                   <div>
                     <PlusOutlined />
-                    <div style={{ marginTop: 8, color: "white" }}>Upload</div>
+                    <div style={{ marginTop: 8, color: "white" }}>Upload Venue Image here</div>
                   </div>
                 )}
               </Upload>
@@ -86,90 +86,69 @@ const AddProduct = () => {
             {/* Product Name */}
            <div className="grid grid-cols-2 gap-4">
              <Form.Item
-              label="Product Name"
+              label="Profile Name"
               name="name"
-              rules={[{ required: true, message: "Please enter product name" }]}
+              rules={[{ required: true, message: "Please enter profile name" }]}
             >
               <Input
                 className="custom-input"
-                placeholder="Enter product name"
+                placeholder="Enter profile name"
+              />
+            </Form.Item>
+
+            {/* Product Slogan */}
+         
+
+           <Form.Item
+              label="Venue Email"
+              name="email"
+              rules={[{ required: true, message: "Please enter venue email" }]}
+            >
+              <Input
+                className="custom-input"
+                placeholder="Enter venue email"
               />
             </Form.Item>
 
             {/* Product Slogan */}
             <Form.Item
-              label="Product Slogan"
-              name="slogan"
+              label="Contact Number"
+              name="contact"
+            
               rules={[
-                { required: true, message: "Please enter product slogan" },
+                { required: true, message: "Please enter contact number" },
               ]}
             >
               <Input
                 className="custom-input"
-                placeholder="Enter product slogan"
+                placeholder="Enter contact number"
               />
             </Form.Item>
-
-            {/* Product Category */}
-            <Form.Item
-              label="Product Category"
-              name="category"
-              rules={[{ required: true, message: "Please select a category" }]}
-            >
-              <Select
-                className="custom-select"
-                placeholder="Select category"
-                dropdownClassName="custom-select-dropdown"
-                suffixIcon={<></>} // Optional: Remove default icon if you want a custom one
-              >
-                <Option value="beverage">Beverage</Option>
-                <Option value="snack">Snack</Option>
-                <Option value="main-course">Main Course</Option>
-                <Option value="dessert">Dessert</Option>
-              </Select>
-            </Form.Item>
-
-            {/* Product Price */}
-            <Form.Item
-              label="Product Price ($)"
-              name="price"
+ <Form.Item
+              label="Location"
+              name="location"
+            
               rules={[
-                { required: true, message: "Please enter product price" },
+                { required: true, message: "Please enter location" },
               ]}
             >
-              <InputNumber
-                className="custom-input w-full"
-                min={0}
-                placeholder="Enter product price"
+              <Input
+                className="custom-input"
+                placeholder="Enter location"
               />
             </Form.Item>
+          
 
            </div>
-            {/* Availability */}
-            <Form.Item
-              label="Availability"
-              name="availability"
-              rules={[
-                { required: true, message: "Please select availability" },
-              ]}
-            >
-              <Select
-                className="custom-select"
-                placeholder="Select availability"
-                dropdownClassName="custom-select-dropdown"
-                suffixIcon={<></>} // Optional: Remove default icon if you want a custom one
-              >
-                <Option value="available">Available</Option>
-                <Option value="not-available">Not Available</Option>
-              </Select>
-            </Form.Item>
+            
+      
 
             <Form.Item>
               <button
                 type="submit"
                 className="bg-gradient-to-tr w-[185px] from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-full"
               >
-                Add Product
+                Update Details
               </button>
             </Form.Item>
           </Form>
@@ -179,4 +158,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default UpdateProfile;

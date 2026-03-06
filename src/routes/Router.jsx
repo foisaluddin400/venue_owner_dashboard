@@ -26,6 +26,12 @@ import ManageProfile from "../page/manageProfile/ManageProfile";
 import HelpSupport from "../page/helpSupport/HelpSupport";
 import ProductDetails from "../page/product/ProductDetails";
 import AddProduct from "../page/product/AddProduct";
+import EditProduct from "../page/product/EditProduct";
+import ShiftDetails from "../page/manageShifts/ShiftDetails";
+import AddManageShift from "../page/manageShifts/AddManageShift";
+import UpdateVenyeProfile from "../page/venuwProfile/UpdateVenyeProfile";
+import UpdateProfile from "../page/manageProfile/UpdateProfile";
+import UpdatePassword from "../page/manageProfile/UpdatePassword";
 
 
 export const router = createBrowserRouter([
@@ -49,6 +55,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/productManagement",
         element: <ProductManage></ProductManage>,
       },
+   
       {
         path: "/dashboard/productManagement/details/:id",
         element: <ProductDetails></ProductDetails>  ,
@@ -57,9 +64,21 @@ export const router = createBrowserRouter([
         path: "/dashboard/ManageShifts",
         element: <ManageShifts></ManageShifts>,
       },
+        {
+        path: "/dashboard/ManageShifts/add_request",
+        element: <AddManageShift></AddManageShift>,
+      },
+      {
+        path: "/dashboard/ManageShifts/details/:id",
+        element: <ShiftDetails></ShiftDetails>,
+      },
       {
         path: "/dashboard/productManagement/add",
         element: <AddProduct></AddProduct>,
+      },
+      {
+        path: "/dashboard/productManagement/edit/:id",
+        element: <EditProduct></EditProduct>,
       },
        {
         path: "/dashboard/earning",
@@ -70,6 +89,10 @@ export const router = createBrowserRouter([
         element: <VenueProfile></VenueProfile>,
       },
       {
+        path: "/dashboard/UpdateVenueProfile",
+        element: <UpdateVenyeProfile></UpdateVenyeProfile>,
+      },
+      {
         path: "/dashboard/HelpSupport",
         element: <HelpSupport></HelpSupport>,
       },
@@ -77,6 +100,23 @@ export const router = createBrowserRouter([
         path: "/dashboard/ManageProfile",
         element: <ManageProfile></ManageProfile>,
       },
+
+
+  {
+        path: "/dashboard/updateProfile",
+        element: <UpdateProfile></UpdateProfile>,
+      },
+
+
+        {
+        path: "/dashboard/updatePassword",
+        element: <UpdatePassword> </UpdatePassword>,
+      },
+
+
+
+
+
       {
         path: "/dashboard/CategoriesManagement/Categories",
         element: <Categories></Categories>,

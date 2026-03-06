@@ -2,6 +2,7 @@ import React from "react";
 import { Table } from "antd";
 import { LuEye } from "react-icons/lu";
 import EyeIco from "../icon/EyeIco";
+import { Link } from "react-router-dom";
 
 const RecentShifts = () => {
 
@@ -86,12 +87,13 @@ const RecentShifts = () => {
       title: "Action",
       key: "action",
       render: (_, record) => (
-        <button
-          className="text-xl text-blue-500"
-          onClick={() => showModal2(record)}
-        >
-          <EyeIco />
-        </button>
+        <Link to={`/dashboard/ManageShifts/details/${record.key}`}>
+          <button
+            className="text-xl text-blue-500"
+            onClick={() => showModal2(record)}
+          >
+            <EyeIco />
+        </button></Link>
       ),
     },
   ];
