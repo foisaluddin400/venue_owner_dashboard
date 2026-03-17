@@ -116,9 +116,9 @@ const ManageShifts = () => {
               </select>
             </div>
 
-            <Link to="/dashboard/ManageShifts/add_request">
+            <Link to="/dashboard/ManageShifts/find_bartender">
             <button className="bg-gradient-to-tr w-[185px] from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-lg flex items-center gap-3">
-              <AddIco /> Add New Request
+              <AddIco /> Find Bartender
             </button>
             </Link>
           </div>

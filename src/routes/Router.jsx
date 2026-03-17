@@ -32,6 +32,8 @@ import AddManageShift from "../page/manageShifts/AddManageShift";
 import UpdateVenyeProfile from "../page/venuwProfile/UpdateVenyeProfile";
 import UpdateProfile from "../page/manageProfile/UpdateProfile";
 import UpdatePassword from "../page/manageProfile/UpdatePassword";
+import FindBarthender from "../page/manageShifts/FindBarthender";
+import BartenderDetails from "../page/manageShifts/BartenderDetails";
 
 
 export const router = createBrowserRouter([
@@ -69,8 +71,18 @@ export const router = createBrowserRouter([
         element: <AddManageShift></AddManageShift>,
       },
       {
+        path: "/dashboard/ManageShifts/find_bartender",
+        element: <FindBarthender></FindBarthender>,
+      },
+      {
+
         path: "/dashboard/ManageShifts/details/:id",
         element: <ShiftDetails></ShiftDetails>,
+      },
+        {
+
+        path: "/dashboard/BartenderShifts/details/:id",
+        element: <BartenderDetails></BartenderDetails>,
       },
       {
         path: "/dashboard/productManagement/add",
