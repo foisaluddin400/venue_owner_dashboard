@@ -21,13 +21,14 @@ import EarningIco from "../icon/EarningIco";
 import BarProfileIco from "../icon/BarProfileIco";
 import ManageProfileIco from "../icon/ManageProfileIco";
 import SupportIco from "../icon/SupportIco";
+import DashboardIco from "../icon/DashboardIco";
 
 
 const items = [
   {
     key: "dashboard",
     label: "Dashboard",
-    icon: <FaHome />,
+    icon: <DashboardIco />,
     link: "/",
   },
   {
