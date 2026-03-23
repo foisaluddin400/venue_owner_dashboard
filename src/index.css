@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
+@font-face {
+  font-family: 'Nunito';
+  src: url('/src/assets/font/Nunito-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
 :root{
   background-color: #0F0B1A;
 }
@@ -65,13 +70,31 @@
 
 /* Pagination buttons style */
 .ant-pagination-item {
-  border-radius: 50% !important; /* Make buttons circular */
+  border-radius: 15% !important; /* Make buttons circular */
 }
 
 /* Active pagination button */
 .ant-pagination-item-active {
-  background-color: #D9000A !important; /* Active background color */
-  border-color: #D9000A !important;    /* Active border color */
+  background-color: #822CE71A !important; /* Active background color */
+  border-color: #2A2448 !important;  
+    /* Active border color */
+}
+
+
+.anticon {
+    display: inline-flex;
+    align-items: center;
+    border: none;
+    padding: 2px;
+    border-radius: 5px;
+    font-style: normal;
+    line-height: 0;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -0.125em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Active pagination button text */
@@ -191,6 +214,41 @@
   color: white !important;
   opacity: 0.7;
 }
+
+
+
+
+
+
+
+.custom-input1 input::placeholder {
+  color: white !important;
+  opacity: 0.7;
+}
+
+/* Input Design */
+.custom-input1 {
+  height: 40px !important;
+  background-color: #1D1733 !important;
+  border-color: #2A2448 !important;
+  color: white !important;
+}
+.custom-input1 .ant-picker-suffix {
+  color: white !important;
+}
+
+.custom-input1 .ant-picker-separator {
+  color: white !important;
+}
+/* Placeholder color */
+.custom-input1::placeholder {
+  color: white !important;
+  opacity: 0.7;
+}
+
+
+
+
 
 
 /* Dropdown container */

@@ -51,8 +51,8 @@ const EditProduct = () => {
 
       <div className="mt-6 border text-white border-[#2A2448] rounded-xl space-y-3">
         <div className="border-b border-[#2A2448] p-3">
-          <h1 className="text-xl font-semibold pb-1">Update Product</h1>
-          <p className="text-[#C9C6D6]">
+          <h1 className="text-[18px] font-semibold pb-1 italic">Update Product</h1>
+          <p className="text-[#C9C6D6] italic">
             Enter product details to display on your Venue menu.
           </p>
         </div>
@@ -65,7 +65,7 @@ const EditProduct = () => {
             className="custom-form"
           >
             {/* Product Image */}
-            <Form.Item label="Product Image">
+            <Form.Item label="Upload Product Image">
               <Upload
                 listType="picture-card"
                 fileList={fileList}

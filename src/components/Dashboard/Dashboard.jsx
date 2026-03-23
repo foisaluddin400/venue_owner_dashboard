@@ -16,9 +16,9 @@ const Dashboard = () => {
          
           <div>
           
-            <h1 className="font-semibold text-2xl text-white italic"> Total Categories</h1>
+            <h1 className="text-2xl text-white italic font-nunito"> Total Categories</h1>
             <div className="flex pt-5 justify-between items-center ">
-              <h1 className="text-[#822CE7] text-3xl font-bold">17</h1>
+              <h1 className="text-[#822CE7] text-3xl font-bold italic font-nunito">17</h1>
               <div className="bg-[#822CE71A] w-[40px] h-[40px] flex justify-center items-center rounded-lg">
                 <CategoryIco color={'#822CE7'}></CategoryIco>
               </div>
@@ -29,9 +29,9 @@ const Dashboard = () => {
          
           <div>
           
-            <h1 className="font-semibold text-2xl text-white italic"> Total Products</h1>
+            <h1 className=" text-2xl text-white italic font-nunito"> Total Products</h1>
             <div className="flex pt-5 justify-between items-center ">
-              <h1 className="text-[#822CE7] text-3xl font-bold">17</h1>
+              <h1 className="text-[#822CE7] text-3xl font-bold italic font-nunito">17</h1>
               <div className="bg-[#822CE71A] w-[40px] h-[40px] flex justify-center items-center rounded-lg">
                 <ProductIco color={'#822CE7'}/>
               </div>
@@ -42,9 +42,9 @@ const Dashboard = () => {
          
           <div>
           
-            <h1 className="font-semibold text-2xl text-white italic"> trending items</h1>
+            <h1 className=" text-2xl text-white italic font-nunito"> Trending items</h1>
             <div className="flex pt-5 justify-between items-center ">
-              <h1 className="text-[#822CE7] text-3xl font-bold">17</h1>
+              <h1 className="text-[#822CE7] text-3xl font-bold italic font-nunito">17</h1>
               <div className="bg-[#822CE71A] w-[40px] h-[40px] flex justify-center items-center rounded-lg">
                 <ShiftsIco color={'#822CE7'}/>
               </div>

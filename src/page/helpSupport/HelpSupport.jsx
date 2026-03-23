@@ -18,8 +18,8 @@ const HelpSupport = () => {
       {/* Venue Details */}
       <div className="mt-6 border text-white border-[#2A2448] rounded-xl space-y-3">
         <div className="border-b border-[#2A2448] p-3">
-          <h1 className="text-xl font-semibold pb-1">Contact Support</h1>
-          <p className="text-[#C9C6D6]">Send us your questions or concerns, and our team will get back to you.</p>
+          <h1 className="text-[18px] italic font-semibold pb-1">Contact Support</h1>
+          <p className="text-[#C9C6D6] italic">Send us your questions or concerns, and our team will get back to you.</p>
         </div>
 
         <div className="p-4">

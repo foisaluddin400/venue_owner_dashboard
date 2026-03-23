@@ -62,7 +62,7 @@ const ManageShifts = () => {
       key: "status",
       render: (_, record) => (
         <span
-          className={`px-3 py-1 rounded-full text-xs ${
+          className={`px-3 py-1 italic rounded-full text-xs ${
             record.status === "Approved"
               ? "bg-green-500/20 text-green-400"
               : "bg-yellow-500/20 text-yellow-400"
@@ -79,7 +79,7 @@ const ManageShifts = () => {
       render: (_, record) => (
         <div className="flex justify-end">
           <Link to={`/dashboard/ManageShifts/details/${record.key}`}>
-            <button className="w-[36px] h-[36px] text-lg bg-[#22C55E1A] flex justify-center items-center text-[#22C55E] rounded cursor-pointer">
+            <button className="w-[36px] h-[36px] text-lg bg-[#22C55E1A] flex justify-center items-center ital text-[#22C55E] rounded cursor-pointer">
             <EyeIco />
           </button>
           </Link>
@@ -109,11 +109,12 @@ const ManageShifts = () => {
           <div className="flex gap-2">
             <div className=" px-3 border-[#2A2448] justify-between items-center">
               <select className="bg-[#1a1238] text-gray-300 px-4 py-2 rounded-lg border border-[#2A2448] outline-none">
-                <option>Pending Request</option>
+                  <option>All</option>
+              <option>Pending Request</option>
                 <option>Ongoing</option>
                 <option>Upcomming</option>
                 <option>Completed</option>
-              </select>
+        </select>
             </div>
 
             <Link to="/dashboard/ManageShifts/find_bartender">

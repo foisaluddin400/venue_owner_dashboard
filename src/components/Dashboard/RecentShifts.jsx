@@ -19,7 +19,7 @@ const RecentShifts = () => {
       image: "https://i.pravatar.cc/100?img=1",
       requestedOn: "12 Jun 2026",
       shiftDate: "15 Jun 2026",
-      status: "Pending",
+      status: "Completed",
     },
     {
       key: 2,
@@ -29,7 +29,7 @@ const RecentShifts = () => {
       image: "https://i.pravatar.cc/100?img=2",
       requestedOn: "10 Jun 2026",
       shiftDate: "14 Jun 2026",
-      status: "Approved",
+      status: "Completed",
     },
   ];
 
@@ -73,10 +73,10 @@ const RecentShifts = () => {
       key: "status",
       render: (_, record) => (
         <span
-          className={`px-3 py-1 rounded-full text-sm ${
+          className={`px-3 py-1 rounded-full italic text-sm ${
             record.status === "Approved"
-              ? "bg-green-500/20 text-green-400"
-              : "bg-yellow-500/20 text-yellow-400"
+              ? "bg-[#3D8BFF33] text-[#3D8BFF]"
+              : "bg-[#3D8BFF33] text-[#3D8BFF]"
           }`}
         >
           {record.status}
@@ -101,8 +101,9 @@ const RecentShifts = () => {
   return (
     <div>
       <div className="flex pt-4 text-white justify-between items-center mb-4">
-        <h1 className="text-xl font-semibold">Recent Shifts</h1>
-        <button className="text-[#3D8BFF] font-medium">View All</button>
+        <h1 className="text-xl font-semibold font-nunito italic">Recent Shifts</h1>
+       <Link to={'/dashboard/ManageShifts'}>
+        <button className="text-[#3D8BFF] font-medium">View All</button></Link>
       </div>
 
       <Table

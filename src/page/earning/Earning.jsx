@@ -67,8 +67,8 @@ const Earning = () => {
       
       {/* Header */}
       <div className="flex border-b px-3 py-2 border-[#2A2448] justify-between items-center">
-        <h2 className="text-lg font-semibold text-gray-300">
-          Showing activities for Today
+        <h2 className="text-[16px] font-semibold italic text-gray-300">
+          Earning Matrix
         </h2>
 
         <select className="bg-[#1a1238] text-gray-300 px-4 py-2 rounded-lg border border-[#2A2448] outline-none">
@@ -93,7 +93,7 @@ const Earning = () => {
             </div>
 
             <div>
-              <p className="text-gray-400 text-sm">Total Earnings</p>
+              <p className="text-gray-400 text-sm italic">Showing Earnings for Today</p>
               <p className="text-purple-400 text-lg font-semibold">$ 1176</p>
             </div>
           </div>

@@ -51,8 +51,8 @@ const UpdateVenyeProfile = () => {
 
       <div className="mt-6 border text-white border-[#2A2448] rounded-xl space-y-3">
         <div className="border-b border-[#2A2448] p-3">
-          <h1 className="text-xl font-semibold pb-1">Update Vnue Information</h1>
-          <p className="text-[#C9C6D6]">
+          <h1 className="text-[18px] italic font-semibold pb-1">Update Vnue Information</h1>
+          <p className="text-[#C9C6D6] italic">
          Edit your Venue details and keep your profile up to date.
           </p>
         </div>
@@ -65,7 +65,7 @@ const UpdateVenyeProfile = () => {
             className="custom-form"
           >
             {/* Product Image */}
-            <Form.Item label="Product Image">
+            <Form.Item label="Upload Venue Image">
               <Upload
                 listType="picture-card"
                 fileList={fileList}
@@ -98,26 +98,26 @@ const UpdateVenyeProfile = () => {
 
             {/* Product Slogan */}
             <Form.Item
-              label="Product Slogan"
-              name="slogan"
+              label="Owner Name"
+              name="ownerName"
               rules={[
-                { required: true, message: "Please enter product slogan" },
+                { required: true, message: "Please enter Owner Name" },
               ]}
             >
               <Input
                 className="custom-input"
-                placeholder="Enter product slogan"
+                placeholder="Enter Owner Name"
               />
             </Form.Item>
 
            <Form.Item
-              label="Venue Email"
+              label="Email"
               name="email"
-              rules={[{ required: true, message: "Please enter venue email" }]}
+              rules={[{ required: true, message: "Please enter email" }]}
             >
               <Input
                 className="custom-input"
-                placeholder="Enter venue email"
+                placeholder="Enter email"
               />
             </Form.Item>
 

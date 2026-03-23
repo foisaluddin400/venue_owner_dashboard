@@ -13,12 +13,12 @@ const AddManageShift = () => {
 
   return (
     <div className="p-3 h-[87vh] overflow-auto">
-      <Navigate title="Add Manage Shift" />
+      <Navigate title="Manage Shifts" />
 
       <div className="mt-6 border text-white border-[#2A2448] rounded-xl space-y-3">
         <div className="border-b border-[#2A2448] p-3">
-          <h1 className="text-xl font-semibold pb-1">Send Shift Request</h1>
-          <p className="text-[#C9C6D6]">
+          <h1 className="text-[18px] italic font-semibold pb-1">Send Shift Request</h1>
+          <p className="text-[#C9C6D6] italic">
             Invite this bartender to work your upcoming shift.
           </p>
         </div>
@@ -39,7 +39,7 @@ const AddManageShift = () => {
                 rules={[{ required: true, message: "Please select shift date" }]}
               >
                 <DatePicker
-                  className="custom-input w-full"
+                  className="custom-input1 w-full"
                   placeholder="Select date"
                 />
               </Form.Item>

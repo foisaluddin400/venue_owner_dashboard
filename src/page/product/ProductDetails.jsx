@@ -9,7 +9,7 @@ const ProductDetails = () => {
     name: "Midnight Lounge",
     owner: "Daniel Roberts",
     email: "daniel@midnightlounge.com",
-    contact: "+1 (512) 555-0199",
+    contact: "Bold Flavors Only",
     location: "Austin, Texas, USA",
   };
 
@@ -26,29 +26,29 @@ const ProductDetails = () => {
         </div>
       {/* Venue Details */}
       <div className="mt-6 border text-white border-[#2A2448] rounded-xl  space-y-3">
-      <div className="border-b border-[#2A2448] p-3">
+      <div className="border-b italic border-[#2A2448] p-3">
         <h1>Product Details </h1>
       </div>
 
         <div className="grid p-3 grid-cols-2 gap-4 text-sm">
           <div>
-            <p className="text-gray-400">Product Name</p>
+            <p className="text-gray-400 italic">Product Name</p>
             <p>{venue.name}</p>
           </div>
           <div>
-            <p className="text-gray-400">Category Name</p>
+            <p className="text-gray-400 italic">Category Name</p>
             <p>{venue.owner}</p>
           </div>
           <div>
-            <p className="text-gray-400">Availability</p>
-            <button className="bg-[#22C55E33] px-2 mt-1 text-[#22C55E] rounded-full ">In Stock</button>
+            <p className="text-gray-400 italic">Availability</p>
+            <button className="bg-[#22C55E33] px-2 mt-1 italic text-[#22C55E] rounded-full ">In Stock</button>
           </div>
           <div>
-            <p className="text-gray-400">Slogan</p>
+            <p className="text-gray-400 italic">Slogan</p>
             <p>{venue.contact}</p>
           </div>
           <div className="col-span-2">
-            <p className="text-gray-400">Price</p>
+            <p className="text-gray-400 italic">Price</p>
             <p>$34.99</p>
           </div>
         </div>

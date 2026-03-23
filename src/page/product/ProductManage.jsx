@@ -64,7 +64,7 @@ const ProductManage = () => {
       key: "availability",
       render: (_, record) => (
         <span
-          className={`px-3 py-1 rounded-full text-xs ${
+          className={`px-3 py-1 rounded-full italic text-xs ${
             record.availability === "Available"
               ? "bg-green-500/20 text-green-400"
               : "bg-red-500/20 text-red-400"
@@ -81,7 +81,7 @@ const ProductManage = () => {
       render: (_, record) => (
         <div className="flex justify-end gap-3 items-center">
           <Link to={`/dashboard/productManagement/details/${record.key}`}>
-            <button className="w-[36px] h-[36px] text-lg bg-[#22C55E1A] flex justify-center items-center text-[#22C55E] rounded cursor-pointer">
+            <button className="w-[36px] h-[36px] text-lg bg-[#822CE71A] flex justify-center items-center text-[#822CE7] rounded cursor-pointer">
               <LuEye />
             </button>
           </Link>

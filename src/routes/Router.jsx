@@ -34,6 +34,10 @@ import UpdateProfile from "../page/manageProfile/UpdateProfile";
 import UpdatePassword from "../page/manageProfile/UpdatePassword";
 import FindBarthender from "../page/manageShifts/FindBarthender";
 import BartenderDetails from "../page/manageShifts/BartenderDetails";
+import JoinAs from "../Auth/JoinAs";
+import CompleteProfile from "../Auth/CompleteProfile";
+import ConnectStripe from "../Auth/ConnectStripe";
+import RegisterVerify from "../Auth/RegisterVerify";
 
 
 export const router = createBrowserRouter([
@@ -178,8 +182,24 @@ export const router = createBrowserRouter([
     element: <Login></Login>,
   },
   {
+    path: "/joinAs",
+    element: <JoinAs></JoinAs>,
+  },
+   {
+    path: "/completeProfile",
+    element: <CompleteProfile></CompleteProfile>,
+  },
+   {
+    path: "/connectStripe",
+    element: <ConnectStripe></ConnectStripe>,
+  },
+  {
     path: "/forgot-password",
     element: <ForgetPass></ForgetPass>,
+  },
+   {
+    path: "/registerVerify",
+    element: <RegisterVerify></RegisterVerify>,
   },
   {
     path: "/verification",
