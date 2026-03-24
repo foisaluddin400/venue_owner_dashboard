@@ -113,15 +113,7 @@ const UserManagement = () => {
         
       />
 
-      <div className="mt-4 flex justify-center">
-        <Pagination
-          current={currentPage}
-          pageSize={pageSize}
-          total={dummyUsers.length}
-          onChange={handlePageChange}
-          showSizeChanger={false}
-        />
-      </div>
+    
 
       {/* Modal */}
       <Modal

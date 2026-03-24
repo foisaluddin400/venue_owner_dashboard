@@ -135,16 +135,7 @@ const ManageShifts = () => {
         className="custom-table"
       />
 
-      {/* Pagination */}
-      <div className="mt-4 flex justify-center">
-        <Pagination
-          current={currentPage}
-          pageSize={pageSize}
-          total={dummyShifts.length}
-          onChange={handlePageChange}
-          showSizeChanger={false}
-        />
-      </div>
+  
     </div>
   );
 };

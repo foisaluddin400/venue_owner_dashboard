@@ -136,7 +136,8 @@ const ProductManage = () => {
       />
 
       {/* Pagination */}
-      <div className="mt-4 flex justify-center">
+
+      <div className=" bg-[#822CE71A]   w-full z-10 py-3 rounded-b-xl flex justify-center">
         <Pagination
           current={currentPage}
           pageSize={pageSize}

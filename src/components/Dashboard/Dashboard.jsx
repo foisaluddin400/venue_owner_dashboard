@@ -10,15 +10,15 @@ import Activity from "./Activity";
 import RecentShifts from "./RecentShifts";
 const Dashboard = () => {
   return (
-    <div className=" ">
+    <div className=" font-nunito">
       <div className="grid grid-cols-3 gap-4">
         <div className=" gap-4 items-center border border-[#822CE7] bg-[#822CE71A] p-6 rounded-xl shadow">
          
           <div>
           
-            <h1 className="text-2xl text-white italic font-nunito"> Total Categories</h1>
+            <h1 className="text-2xl text-white italic "> Total Categories</h1>
             <div className="flex pt-5 justify-between items-center ">
-              <h1 className="text-[#822CE7] text-3xl font-bold italic font-nunito">17</h1>
+              <h1 className="text-[#822CE7] text-3xl font-extrabold italic font-nunito">17</h1>
               <div className="bg-[#822CE71A] w-[40px] h-[40px] flex justify-center items-center rounded-lg">
                 <CategoryIco color={'#822CE7'}></CategoryIco>
               </div>
@@ -29,9 +29,9 @@ const Dashboard = () => {
          
           <div>
           
-            <h1 className=" text-2xl text-white italic font-nunito"> Total Products</h1>
+            <h1 className=" text-2xl text-white italic "> Total Products</h1>
             <div className="flex pt-5 justify-between items-center ">
-              <h1 className="text-[#822CE7] text-3xl font-bold italic font-nunito">17</h1>
+              <h1 className="text-[#822CE7] text-3xl font-extrabold italic font-nunito">17</h1>
               <div className="bg-[#822CE71A] w-[40px] h-[40px] flex justify-center items-center rounded-lg">
                 <ProductIco color={'#822CE7'}/>
               </div>
@@ -44,7 +44,7 @@ const Dashboard = () => {
           
             <h1 className=" text-2xl text-white italic font-nunito"> Trending items</h1>
             <div className="flex pt-5 justify-between items-center ">
-              <h1 className="text-[#822CE7] text-3xl font-bold italic font-nunito">17</h1>
+              <h1 className="text-[#822CE7] text-3xl font-extrabold italic font-nunito">17</h1>
               <div className="bg-[#822CE71A] w-[40px] h-[40px] flex justify-center items-center rounded-lg">
                 <ShiftsIco color={'#822CE7'}/>
               </div>

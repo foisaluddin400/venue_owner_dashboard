@@ -10,6 +10,7 @@ import {
   message,
 } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import { FaChevronDown } from "react-icons/fa";
 
 const { Option } = Select;
 
@@ -120,7 +121,7 @@ const AddProduct = () => {
                 className="custom-select"
                 placeholder="Select category"
                 dropdownClassName="custom-select-dropdown"
-                suffixIcon={<></>} // Optional: Remove default icon if you want a custom one
+                suffixIcon={<FaChevronDown className="text-[#C9C6D6] text-sm mt-2" />} // Optional: Remove default icon if you want a custom one
               >
                 <Option value="beverage">Beverage</Option>
                 <Option value="snack">Snack</Option>
@@ -157,7 +158,7 @@ const AddProduct = () => {
                 className="custom-select"
                 placeholder="Select availability"
                 dropdownClassName="custom-select-dropdown"
-                suffixIcon={<></>} // Optional: Remove default icon if you want a custom one
+                suffixIcon={<FaChevronDown className="text-[#C9C6D6] text-sm mt-2" />} // Optional: Remove default icon if you want a custom one
               >
                 <Option value="available">Available</Option>
                 <Option value="not-available">Not Available</Option>

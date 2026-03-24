@@ -5,9 +5,13 @@
 @font-face {
   font-family: 'Nunito';
   src: url('/src/assets/font/Nunito-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
 }
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/src/assets/font/Montserrat-Regular.ttf') format('truetype');
+}
+
 :root{
   background-color: #0F0B1A;
 }
@@ -256,8 +260,8 @@
   background-color: #1D1733 !important;
   color: white !important;
   border-radius: 8px;
-  border: 1px solid #822CE7;
-  padding: 4px 0;
+  border: 1px solid #832ce700;
+ 
 }
 
 /* Individual option */
@@ -277,6 +281,12 @@
   background-color: #161325 !important;
   color: white !important;
 }
+
+
+
+
+
+
 
 /* Dropdown arrow color change and remove border */
 .custom-select .ant-select-arrow {
@@ -314,7 +324,7 @@
 .custom-select .ant-select-selector:hover,
 .custom-select .ant-select-selector:focus {
   border-color: #822CE71A !important;
-  box-shadow: 0 0 0 2px rgba(130,44,231,0.2);
+  box-shadow: 0 0 0 2px rgba(144, 73, 226, 0.2);
 }
 
 

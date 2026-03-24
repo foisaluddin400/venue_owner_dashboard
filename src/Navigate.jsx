@@ -5,7 +5,7 @@ import ArrayLeft from './components/icon/ArrayLeft';
 export const Navigate = ({title}) => {
     const navigate = useNavigate()
   return (
-    <div className=''>
+    <div className='font-montserrat'>
         <div
           style={{
             display: "flex",

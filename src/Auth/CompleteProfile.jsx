@@ -25,7 +25,7 @@ const CompleteProfile = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen px-4 lg:px-0 bg-[#0F0B1A]">
+    <div className="flex font-nunito justify-center items-center min-h-screen px-4 lg:px-0 bg-[#0F0B1A]">
       <div className="w-full max-w-lg p-8 border  border-[#2A2448] rounded-lg bg-[#822CE71A]">
         <h2 className="text-2xl font-semibold text-white mb-2 italic">Complete Your Venue Profile</h2>
         <p className="text-gray-400 mb-6 text-sm">

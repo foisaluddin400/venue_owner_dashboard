@@ -143,15 +143,7 @@ const Categories = () => {
         loading={isLoading}
       />
 
-      <div className="mt-4 flex justify-center">
-        <Pagination
-          current={currentPage}
-          pageSize={pageSize}
-          total={total}
-          onChange={handlePageChange}
-          showSizeChanger={false}
-        />
-      </div>
+     
 
       <AddCategories
         openAddModal={openAddModal}

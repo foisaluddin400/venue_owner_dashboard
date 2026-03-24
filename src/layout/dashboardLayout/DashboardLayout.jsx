@@ -4,7 +4,7 @@ import SidBar from "../../components/LayoutComponents/SidBar";
 
 const DashboardLayout = () => {
   return (
-    <div className="lg:flex bg-[#0F0B1A]">
+    <div className="lg:flex bg-[#0F0B1A] font-nunito">
       <div className="lg:w-[260px] bg-[#2A2448] overflow-auto lg:fixed lg:top-0 lg:left-0 lg:bottom-0 hidden lg:block no-scrollbar">
         <SidBar />
       </div>

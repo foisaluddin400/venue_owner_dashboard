@@ -6,7 +6,7 @@ const Verify = () => {
   const [otp, setOtp] = useState("");
 
   return (
-    <div className="flex justify-center items-center min-h-screen px-4 lg:px-0 bg-[#0F0B1A]">
+    <div className="flex font-nunito justify-center items-center min-h-screen px-4 lg:px-0 bg-[#0F0B1A]">
       <div className="w-full max-w-lg p-8 border-[#2A2448] rounded-lg bg-[#822CE71A]">
         {/* Title */}
         <h2 className="text-2xl font-semibold text-white mb-2">
