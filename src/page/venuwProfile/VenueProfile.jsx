@@ -10,7 +10,7 @@ import ShareIco from "../../components/icon/ShareIco";
 import DownloadIco from "../../components/icon/DownloadIco";
 
 const VenueProfile = () => {
-  const venueLink = "https://flonx-progressive-web-app.vercel.app/shiftDetails";
+  const venueLink = "https://flonx-bartender-flow.vercel.app/auth/login";
   const [showQRModal, setShowQRModal] = useState(false);
   const qrRef = useRef(null);
 
