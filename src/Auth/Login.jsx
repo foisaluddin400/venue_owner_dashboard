@@ -88,12 +88,13 @@ const Login = () => {
           </div>
 
           {/* Login Button */}
+          <Link to={'/'}>
           <button
             type="submit"
             className="w-full bg-gradient-to-tr from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-full"
           >
             Login
-          </button>
+          </button></Link>
         </form>
         <span className="flex justify-center pt-2 text-white">No account yet?  <Link to={'/joinAs'}><span className="text-[#822CE7]"> Create an account</span></Link></span>
       </div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const CompleteProfile = () => {
   const [formValues, setFormValues] = useState({
@@ -117,12 +118,13 @@ const CompleteProfile = () => {
           </div>
 
           {/* Submit Button */}
+        <Link to={'/connectStripe'}>
           <button
             type="submit"
-            className="w-full bg-gradient-to-tr from-[#822CE7] to-[#BB82FF] py-3 text-white rounded-full shadow-md hover:opacity-90 transition"
+            className="w-full bg-gradient-to-tr mt-2 from-[#822CE7] to-[#BB82FF] py-3 text-white rounded-full shadow-md hover:opacity-90 transition"
           >
             Submit
-          </button>
+          </button></Link>
         </form>
       </div>
     </div>

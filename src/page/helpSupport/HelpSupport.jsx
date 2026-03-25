@@ -38,14 +38,17 @@ const HelpSupport = () => {
               <Input className="custom-input" placeholder="Enter the topic" />
             </Form.Item>
 
-            <Form.Item
-              label="Message"
-              name="message"
-              rules={[{ required: true, message: "Please enter your message" }]}
-            >
-              <Input.TextArea className="custom-input" rows={8} placeholder="Type your message here..." />
-            </Form.Item>
-
+           <Form.Item
+  label="Message"
+  name="message"
+  rules={[{ required: true, message: "Please enter your message" }]}
+>
+  <Input.TextArea
+    className="custom-input"
+    placeholder="Type your message here..."
+    autoSize={{ minRows: 6, maxRows: 10 }}
+  />
+</Form.Item>
             <Form.Item>
               <button
                 type="primary"
