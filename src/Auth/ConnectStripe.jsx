@@ -4,6 +4,7 @@ import { BsDot } from "react-icons/bs";
 import DollarIco from "../components/icon/DollarIco";
 import SecurityIco from "../components/icon/SecurityIco";
 import SetUpIco from "../components/icon/SetUpIco";
+import { Link } from "react-router-dom";
 
 const ConnectStripe = () => {
   return (
@@ -74,9 +75,10 @@ const ConnectStripe = () => {
 
         {/* Buttons */}
         <div className="flex gap-4">
+         <Link to={'/'}>
           <button className="flex-1 py-2 rounded-full border border-[#822CE7] text-purple-400 hover:bg-purple-600 hover:text-white transition">
             Connect Stripe Account
-          </button>
+          </button></Link>
 
           <button
             disabled
