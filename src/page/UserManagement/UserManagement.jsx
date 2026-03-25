@@ -108,12 +108,9 @@ const UserManagement = () => {
         dataSource={paginatedUsers}
         columns={columns}
         pagination={false}
-        scroll={{ x: "max-content"}}
+        scroll={{ x: "max-content" }}
         className="custom-table "
-        
       />
-
-    
 
       {/* Modal */}
       <Modal
