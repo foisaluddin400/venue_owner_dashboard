@@ -2,16 +2,16 @@ import { Form, Input, message, Modal, Spin, Upload } from "antd";
 import React, { useEffect, useState } from "react";
 // import { useUpdateCategoryMutation } from "../redux/api/categoryApi";
 import { imageUrl } from "../redux/api/baseApi";
+import { useUpdateCategoryMutation } from "../redux/api/categoryApi";
 
 const EditCategories = ({ editModal, setEditModal, selectedCategory }) => {
+  console.log(selectedCategory)
   const [form] = Form.useForm();
-  const [fileList, setFileList] = useState([]);
-  const [loading, setLoading] = useState(false);
+const [editCategory, { isLoading }] = useUpdateCategoryMutation();
+ 
+
   // const [updateCategory] = useUpdateCategoryMutation();
 
-  const onChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
-  };
 
   // ✅ Whenever modal opens, fill default data again
   useEffect(() => {
@@ -20,57 +20,39 @@ const EditCategories = ({ editModal, setEditModal, selectedCategory }) => {
         name: selectedCategory?.name,
       });
 
-      setFileList([
-        {
-          uid: "-1",
-          name: "category-image.png",
-          status: "done",
-          url: `${imageUrl}${selectedCategory?.imageUrl}`,
-        },
-      ]);
+     
     }
   }, [editModal, selectedCategory, form]);
 
-  const onPreview = async (file) => {
-    let src = file.url;
-    if (!src) {
-      src = await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file.originFileObj);
-        reader.onload = () => resolve(reader.result);
-      });
-    }
-    const image = new Image();
-    image.src = src;
-    const imgWindow = window.open(src);
-    imgWindow?.document.write(image.outerHTML);
-  };
 
   const handleCancel = () => {
     form.resetFields();
-    setFileList([]);
+  
     setEditModal(false);
   };
 
   const handleSubmit = async (values) => {
-    // setLoading(true);
-    // try {
-    //   const formData = new FormData();
-    //   if (fileList.length && fileList[0].originFileObj) {
-    //     formData.append("image", fileList[0].originFileObj);
-    //   }
-    //   formData.append("name", values.name);
+  try {
+    const data = {
+      name: values.name,
+    };
 
-    //   const res = await updateCategory({ formData, id: selectedCategory?._id });
-    //   message.success(res?.data?.message || "Updated successfully");
-    //   setEditModal(false);
-    // } catch (error) {
-    //   console.error(error);
-    //   message.error(error?.data?.message || "Update failed");
-    // } finally {
-    //   setLoading(false);
-    // }
-  };
+    console.log("Update ID:", selectedCategory?._id);
+    console.log("Update Data:", data);
+
+    const res = await editCategory({
+      id: selectedCategory?._id,
+      data,
+    }).unwrap();
+
+    message.success(res?.message || "Category updated successfully");
+
+    handleCancel();
+  } catch (error) {
+    console.error(error);
+    message.error(error?.data?.message || "Update failed");
+  }
+};
 
   return (
      <Modal
@@ -89,35 +71,34 @@ const EditCategories = ({ editModal, setEditModal, selectedCategory }) => {
   form={form}
   layout="vertical"
   onFinish={handleSubmit}
-    className="custom-form"
+  className="custom-form"
 >
-
-  {/* Category Name */}
   <Form.Item
     label="Category Name"
     name="name"
     rules={[{ required: true, message: "Please input name!" }]}
   >
-    <Input
-      placeholder="Enter title"
-      className="custom-input"
-    />
+    <Input placeholder="Enter title" className="custom-input" />
   </Form.Item>
 
-  {/* Upload */}
-
-
-  {/* Submit */}
   <Form.Item>
     <button
       type="submit"
-      disabled={loading}
-      className="w-full bg-gradient-to-tr from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-lg"
+      disabled={isLoading}
+      className={`w-full py-3 rounded text-white flex justify-center items-center gap-2 ${
+        isLoading ? "bg-[#b879ff]" : "bg-[#822CE7] hover:bg-[#4a0e8f]"
+      }`}
     >
-      {loading ? <Spin size="small" /> : "Edit Category"}
+      {isLoading ? (
+        <>
+          <Spin size="small" />
+          <span>Updating...</span>
+        </>
+      ) : (
+        "Update Category"
+      )}
     </button>
   </Form.Item>
-
 </Form>
         </div>
       </div>

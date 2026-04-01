@@ -1,131 +1,235 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import {
+  GoogleMap,
+  Marker,
+  Autocomplete,
+  useJsApiLoader,
+} from "@react-google-maps/api";
+import { Form, Input, Button, Upload, message } from "antd";
+import { UploadOutlined, PlusOutlined } from "@ant-design/icons";
+import { useAddVenueMutation } from "../page/redux/api/userApi";
+
+const containerStyle = {
+  width: "100%",
+  height: "300px",
+};
 
 const CompleteProfile = () => {
-  const [formValues, setFormValues] = useState({
-    venueImage: null,
-    venueName: "",
-    ownerName: "",
-    email: "",
-    contact: "",
-    location: "",
+  const [completeProfile, { isLoading }] = useAddVenueMutation();
+  const [position, setPosition] = useState(null);
+  
+  const [form] = Form.useForm();
+  const [map, setMap] = useState(null);
+  const [autocomplete, setAutocomplete] = useState(null);
+  const [fileList, setFileList] = useState([]);
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+    libraries: ["places"],
   });
+const handlePlaceChanged = () => {
+  if (autocomplete !== null) {
+    const place = autocomplete.getPlace();
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setFormValues((prev) => ({
-      ...prev,
-      [name]: files ? files[0] : value,
-    }));
+    console.log("PLACE OBJECT:", place);
+
+    if (place?.geometry) {
+      const lat = place.geometry.location.lat();
+      const lng = place.geometry.location.lng();
+      const address = place.formatted_address;
+
+      console.log("Extracted Lat:", lat);
+      console.log("Extracted Lng:", lng);
+      console.log("Address:", address);
+
+      form.setFieldsValue({
+        location: address,
+        lat,
+        lng,
+      });
+
+      // ✅ check form e set hocche kina
+      console.log("After setFieldsValue:", form.getFieldsValue());
+
+      setPosition({ lat, lng });
+
+      map?.panTo({ lat, lng });
+    }
+  }
+};
+  // Upload handlers
+  const onChange = ({ fileList: newFileList }) => setFileList(newFileList);
+
+  const onPreview = async (file) => {
+    let src = file.url;
+    if (!src) {
+      src = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file.originFileObj);
+        reader.onload = () => resolve(reader.result);
+      });
+    }
+    const imgWindow = window.open(src);
+    imgWindow?.document.write(`<img src="${src}" style="width:100%" />`);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Values:", formValues);
-    // handle API submission
-  };
+ const handleSubmit = async (values) => {
+  if (!fileList.length) {
+    message.error("Please upload venue logo.");
+    return;
+  }
 
+  try {
+    const formData = new FormData();
+    formData.append("venue_logo", fileList[0].originFileObj);
+
+const data = {
+  name: values.venueName,
+  email: values.email,
+  phone: values.contact,
+  address: values.location,
+  location: {
+    type: "Point",
+    coordinates: [position?.lng, position?.lat],
+  },
+};
+
+    // ✅ DEBUG START
+    console.log("Form Values:", values);
+    console.log("Final Data Object:", data);
+    console.log("Latitude:", values.lat);
+    console.log("Longitude:", values.lng);
+    console.log("Uploaded File:", fileList[0]);
+
+    // FormData check
+    formData.append("data", JSON.stringify(data));
+
+    for (let pair of formData.entries()) {
+      console.log("FormData =>", pair[0], pair[1]);
+    }
+    // ✅ DEBUG END
+
+    const response = await completeProfile(formData).unwrap();
+
+    message.success(response?.message || "Venue added successfully!");
+  } catch (error) {
+    console.error("API ERROR:", error);
+    message.error(error?.data?.message || "Submission failed!");
+  }
+};
   return (
-    <div className="flex font-nunito justify-center items-center min-h-screen px-4 lg:px-0 bg-[#0F0B1A]">
-      <div className="w-full max-w-lg p-8 border  border-[#2A2448] rounded-lg bg-[#822CE71A]">
-        <h2 className="text-2xl font-semibold text-white mb-2 italic">Complete Your Venue Profile</h2>
-        <p className="text-gray-400 mb-6 text-sm">
-          Provide your Venue details so bartenders can view and accept your shift requests.
-        </p>
+    <div className="flex font-nunito justify-center items-center min-h-screen px-4 lg:px-0 ">
+      <div className="w-full max-w-lg p-8 border border-[#2A2448] rounded-lg bg-[#822CE71A]">
+        <h2 className="text-2xl font-semibold text-white mb-2 italic">
+          Complete Your Venue Profile
+        </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Upload Venue Image */}
-          <div>
-            <label className="text-gray-400 block mb-1">Upload Venue Image</label>
-            <input
-              type="file"
-              name="venueImage"
-              accept="image/*"
-              onChange={handleChange}
-              className="w-full text-white border border-[#2A2448] rounded-lg bg-[#1D1733] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#822CE7]"
-              required
-            />
-          </div>
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={handleSubmit}
+          className="custom-form"
+        >
+          {/* Upload Image */}
+          <Form.Item label="Upload Venue Logo" required>
+            <Upload
+              listType="picture-card"
+              fileList={fileList}
+              onChange={onChange}
+              onPreview={onPreview}
+              beforeUpload={() => false}
+              className="custom-upload"
+            >
+              {fileList.length < 1 && (
+                <div>
+                  <PlusOutlined />
+                  <div style={{ marginTop: 8, color: "white" }}>
+                    Upload Venue Image
+                  </div>
+                </div>
+              )}
+            </Upload>
+          </Form.Item>
 
           {/* Venue Name */}
-          <div>
-            <label className="text-gray-400 block mb-1">Venue Name</label>
-            <input
-              type="text"
-              name="venueName"
-              value={formValues.venueName}
-              onChange={handleChange}
-              placeholder="Enter venue name"
-              className="w-full px-3 py-2 bg-[#1D1733] border border-[#2A2448] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#822CE7] placeholder-white/70"
-              required
-            />
-          </div>
+          <Form.Item
+            label="Venue Name"
+            name="venueName"
+            rules={[{ required: true, message: "Please enter venue name" }]}
+          >
+            <Input className="custom-input" placeholder="Venue Name" />
+          </Form.Item>
 
           {/* Owner Name */}
-          <div>
-            <label className="text-gray-400 block mb-1">Owner Name</label>
-            <input
-              type="text"
-              name="ownerName"
-              value={formValues.ownerName}
-              onChange={handleChange}
-              placeholder="Enter owner name"
-              className="w-full px-3 py-2 bg-[#1D1733] border border-[#2A2448] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#822CE7] placeholder-white/70"
-              required
-            />
-          </div>
+          <Form.Item
+            label="Owner Name"
+            name="ownerName"
+            rules={[{ required: true, message: "Please enter owner name" }]}
+          >
+            <Input className="custom-input" placeholder="Owner Name" />
+          </Form.Item>
 
           {/* Email */}
-          <div>
-            <label className="text-gray-400 block mb-1">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formValues.email}
-              onChange={handleChange}
-              placeholder="Enter email address"
-              className="w-full px-3 py-2 bg-[#1D1733] border border-[#2A2448] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#822CE7] placeholder-white/70"
-              required
-            />
-          </div>
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[{ required: true, message: "Please enter email" }]}
+          >
+            <Input className="custom-input" placeholder="Email" />
+          </Form.Item>
 
-          {/* Contact Number */}
-          <div>
-            <label className="text-gray-400 block mb-1">Contact Number</label>
-            <input
-              type="tel"
-              name="contact"
-              value={formValues.contact}
-              onChange={handleChange}
-              placeholder="Enter contact number"
-              className="w-full px-3 py-2 bg-[#1D1733] border border-[#2A2448] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#822CE7] placeholder-white/70"
-              required
-            />
-          </div>
+          {/* Contact */}
+          <Form.Item
+            label="Contact"
+            name="contact"
+            rules={[{ required: true, message: "Please enter contact number" }]}
+          >
+            <Input className="custom-input" placeholder="Contact Number" />
+          </Form.Item>
 
           {/* Location */}
-          <div>
-            <label className="text-gray-400 block mb-1">Location</label>
-            <input
-              type="text"
-              name="location"
-              value={formValues.location}
-              onChange={handleChange}
-              placeholder="Enter venue location"
-              className="w-full px-3 py-2 bg-[#1D1733] border border-[#2A2448] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#822CE7] placeholder-white/70"
-              required
-            />
-          </div>
+          <Form.Item
+            label="Location"
+            name="location"
+            rules={[{ required: true, message: "Please select location" }]}
+          >
+            {isLoaded && (
+              <Autocomplete
+                onLoad={(autoC) => setAutocomplete(autoC)}
+                onPlaceChanged={handlePlaceChanged}
+              >
+                <Input className="custom-input" placeholder="Venue Location" />
+              </Autocomplete>
+            )}
+          </Form.Item>
+          <Form.Item name="lat" >
+  <Input />
+</Form.Item>
 
-          {/* Submit Button */}
-        <Link to={'/connectStripe'}>
-          <button
-            type="submit"
-            className="w-full bg-gradient-to-tr mt-2 from-[#822CE7] to-[#BB82FF] py-3 text-white rounded-full shadow-md hover:opacity-90 transition"
+<Form.Item name="lng" >
+  <Input />
+</Form.Item>
+
+          {/* Google Map */}
+       {isLoaded && position && (
+  <GoogleMap
+    mapContainerStyle={containerStyle}
+    center={position}
+    zoom={15}
+    onLoad={(map) => setMap(map)}
+  >
+    <Marker position={position} />
+  </GoogleMap>
+)}
+
+          <Button
+            htmlType="submit"
+            type="primary"
+            className="w-full bg-gradient-to-tr from-[#822CE7] to-[#BB82FF]"
+            loading={isLoading}
           >
             Submit
-          </button></Link>
-        </form>
+          </Button>
+        </Form>
       </div>
     </div>
   );

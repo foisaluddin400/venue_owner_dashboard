@@ -1,14 +1,21 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Spin, message } from "antd";
+import { useRegisterUserMutation } from "../page/redux/api/userApi";
 
 const JoinAs = () => {
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
+  const navigate = useNavigate();
+
   const [formValues, setFormValues] = useState({
-    fullName: "",
+    name: "",
     email: "",
     phone: "",
     password: "",
     confirmPassword: "",
+    role: "venueOwner",
   });
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -17,10 +24,27 @@ const JoinAs = () => {
     setFormValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Values:", formValues);
-    // Handle registration logic here
+
+    if (formValues.password !== formValues.confirmPassword) {
+      message.error("Password and Confirm Password do not match!");
+      return;
+    }
+
+    try {
+      const payload = { ...formValues };
+      const response = await registerUser(payload).unwrap();
+
+      // ✅ Save only email to localStorage
+      localStorage.setItem("registerEmail", formValues.email);
+
+      message.success(response?.message || "Registration successful!");
+      navigate("/registerVerify");
+    } catch (error) {
+      console.error("Registration error:", error);
+      message.error(error?.data?.message || "Registration failed!");
+    }
   };
 
   return (
@@ -30,26 +54,23 @@ const JoinAs = () => {
           Join as a Venue Owner
         </h2>
         <p className="text-gray-400 mb-6 text-sm">
-          Create your account to manage your Venue, post shifts, and hire
-          bartenders.
+          Create your account to manage your Venue, post shifts, and hire bartenders.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Full Name */}
           <div>
             <label className="text-gray-400 block mb-1">Full Name</label>
             <input
               type="text"
-              name="fullName"
-              value={formValues.fullName}
+              name="name"
+              value={formValues.name}
               onChange={handleChange}
               placeholder="Enter your full name"
-              className="w-full px-3 py-2 bg-[#1D1733] border border-[#2A2448] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#822CE7] placeholder-white/70"
+              className="w-full px-3 py-2 bg-[#1D1733] border border-[#2A2448] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#822CE7]"
               required
             />
           </div>
 
-          {/* Email */}
           <div>
             <label className="text-gray-400 block mb-1">Email Address</label>
             <input
@@ -58,12 +79,11 @@ const JoinAs = () => {
               value={formValues.email}
               onChange={handleChange}
               placeholder="Enter your email"
-              className="w-full px-3 py-2 bg-[#1D1733] border border-[#2A2448] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#822CE7] placeholder-white/70"
+              className="w-full px-3 py-2 bg-[#1D1733] border border-[#2A2448] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#822CE7]"
               required
             />
           </div>
 
-          {/* Contact Phone */}
           <div>
             <label className="text-gray-400 block mb-1">Contact Phone</label>
             <input
@@ -72,12 +92,11 @@ const JoinAs = () => {
               value={formValues.phone}
               onChange={handleChange}
               placeholder="Enter your phone number"
-              className="w-full px-3 py-2 bg-[#1D1733] border border-[#2A2448] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#822CE7] placeholder-white/70"
+              className="w-full px-3 py-2 bg-[#1D1733] border border-[#2A2448] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#822CE7]"
               required
             />
           </div>
 
-          {/* Password */}
           <div>
             <label className="text-gray-400 block mb-1">Password</label>
             <div className="relative">
@@ -87,7 +106,7 @@ const JoinAs = () => {
                 value={formValues.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full px-3 py-2 bg-[#1D1733] border border-[#2A2448] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#822CE7] placeholder-white/70"
+                className="w-full px-3 py-2 bg-[#1D1733] border border-[#2A2448] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#822CE7]"
                 required
               />
               <button
@@ -100,7 +119,6 @@ const JoinAs = () => {
             </div>
           </div>
 
-          {/* Confirm Password */}
           <div>
             <label className="text-gray-400 block mb-1">Confirm Password</label>
             <div className="relative">
@@ -110,7 +128,7 @@ const JoinAs = () => {
                 value={formValues.confirmPassword}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full px-3 py-2 bg-[#1D1733] border border-[#2A2448] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#822CE7] placeholder-white/70"
+                className="w-full px-3 py-2 bg-[#1D1733] border border-[#2A2448] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#822CE7]"
                 required
               />
               <button
@@ -123,16 +141,24 @@ const JoinAs = () => {
             </div>
           </div>
 
-          {/* Submit Button */}
-          <Link to={"/registerVerify"}>
-            <button
-              type="submit"
-              className="w-full mt-3 bg-gradient-to-tr from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-full"
-            >
-              Join Now
-            </button>
-          </Link>
+          <button
+            type="submit"
+            disabled={isLoading}
+            className={`w-full py-3 rounded text-white flex justify-center items-center gap-2 ${
+              isLoading ? "bg-[#b879ff]" : "bg-[#822CE7] hover:bg-[#4a0e8f]"
+            }`}
+          >
+            {isLoading ? (
+              <>
+                <Spin size="small" />
+                <span>Submitting...</span>
+              </>
+            ) : (
+              "Register"
+            )}
+          </button>
         </form>
+
         <span className="flex justify-center pt-2 text-white">
           Already have an account?
           <Link to={"/login"}>

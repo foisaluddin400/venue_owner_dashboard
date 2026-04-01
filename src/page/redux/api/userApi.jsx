@@ -1,6 +1,5 @@
 import { baseApi } from "./baseApi";
 
-
 const useApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     loginAdmin: builder.mutation({
@@ -12,7 +11,37 @@ const useApi = baseApi.injectEndpoints({
         };
       },
     }),
-    
+
+    registerUser: builder.mutation({
+      query: (data) => {
+        return {
+          url: "/user/register-user",
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+
+    addVenue: builder.mutation({
+      query: (data) => {
+        return {
+          url: "/venue/add-venue",
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+
+    resentVerify: builder.mutation({
+      query: (data) => {
+        return {
+          url: "/user/resend-verify-code",
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+
     getProfile: builder.query({
       query: () => {
         return {
@@ -31,10 +60,10 @@ const useApi = baseApi.injectEndpoints({
         };
       },
     }),
-    verifyOtp: builder.mutation({
+    registerVerify: builder.mutation({
       query: (data) => {
         return {
-          url: "/auth/recovery-verification",
+          url: "/user/verify-code",
           method: "POST",
           body: data,
         };
@@ -74,7 +103,6 @@ const useApi = baseApi.injectEndpoints({
           url: `/dashboard/get-all-user?role=${user}&page=${page}&searchTerm=${search}`,
           method: "GET",
         };
-
       },
       providesTags: ["host"],
     }),
@@ -85,7 +113,7 @@ const useApi = baseApi.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
-      invalidatesTags: ["host"], 
+      invalidatesTags: ["host"],
     }),
   }),
 });
@@ -94,10 +122,13 @@ export const {
   useLoginAdminMutation,
   useGetProfileQuery,
   useForgotPasswordMutation,
-  useVerifyOtpMutation,
+  useRegisterVerifyMutation,
   useResetPasswordMutation,
   useUpdateProfileMutation,
   useChangePasswordMutation,
   useGetHostUserQuery,
   useBlockUserHostMutation,
+  useRegisterUserMutation,
+  useResentVerifyMutation,
+  useAddVenueMutation
 } = useApi;

@@ -1,62 +1,29 @@
-import { Form, Input, message, Modal, Spin, Upload } from "antd";
+import { Form, Input, message, Modal, Spin } from "antd";
 import React, { useState } from "react";
-// import { useAddCategoryMutation } from "../redux/api/categoryApi";
-// import { useAddCategoryMutation } from "../redux/api/productManageApi";
-const onPreview = async (file) => {
-  let src = file.url;
-  if (!src) {
-    src = await new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file.originFileObj);
-      reader.onload = () => resolve(reader.result);
-    });
-  }
-  const image = new Image();
-  image.src = src;
-  const imgWindow = window.open(src);
-  imgWindow?.document.write(image.outerHTML);
-};
-const AddCategories = ({ openAddModal, setOpenAddModal }) => {
-  const [form] = Form.useForm();
-  const [fileList, setFileList] = useState([]);
-  // const [addcategory] = useAddCategoryMutation();
-  const [loading, setLoading] = useState(false);
-  const onChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
-  };
+import { useAddCategoryMutation } from "../redux/api/categoryApi";
 
+const AddCategories = ({ openAddModal, setOpenAddModal }) => {
+  const [addCategory, { isLoading }] = useAddCategoryMutation();
+  const [form] = Form.useForm();
+
+  // Close modal and reset form
   const handleCancel = () => {
     form.resetFields();
-    setFileList([]);
     setOpenAddModal(false);
   };
 
+  // Submit form
   const handleSubmit = async (values) => {
-    console.log("Submitted values:", values);
-    // setLoading(true);
-
-    // try {
-    //   const formData = new FormData();
-
-    //   fileList.forEach((file) => {
-    //     formData.append("image", file.originFileObj);
-    //   });
-    //   formData.append("name", values.name);
-
-    //   const res = await addcategory(formData);
-    //   console.log(res);
-    //   message.success(res.data.message);
-    //   setLoading(false);
-    //   setOpenAddModal(false);
-    // } catch (error) {
-    //   setLoading(false);
-    //   console.error(error);
-    //   message.error(message?.data?.error);
-    //   setOpenAddModal(false);
-    // } finally {
-    //   setLoading(false);
-    //   setOpenAddModal(false);
-    // }
+    try {
+      const payload = { name: values.name };
+      const response = await addCategory(payload).unwrap();
+      message.success(response?.message || "Category added successfully!");
+      form.resetFields();
+      setOpenAddModal(false);
+    } catch (error) {
+      console.error("Add category error:", error);
+      message.error(error?.data?.message || "Failed to add category!");
+    }
   };
 
   return (
@@ -67,7 +34,7 @@ const AddCategories = ({ openAddModal, setOpenAddModal }) => {
       footer={null}
       width={600}
     >
-      <div className="bg-[#0F0B1A] mx-[-25px] mt-[-20px]  mb-[-45px] rounded-lg p-4 border border-[#2A2448]">
+      <div className="bg-[#0F0B1A] mx-[-25px] mt-[-20px] mb-[-45px] rounded-lg p-4 border border-[#2A2448]">
         <div>
           <div className="font-bold text-center text-white">+ Add Category</div>
 
@@ -86,16 +53,23 @@ const AddCategories = ({ openAddModal, setOpenAddModal }) => {
               <Input placeholder="Enter title" className="custom-input" />
             </Form.Item>
 
-            {/* Upload */}
-
             {/* Submit */}
             <Form.Item>
               <button
                 type="submit"
-                disabled={loading}
-                className="w-full bg-gradient-to-tr from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-lg"
+                disabled={isLoading}
+                className={`w-full py-3 rounded text-white flex justify-center items-center gap-2 ${
+                  isLoading ? "bg-[#b879ff]" : "bg-[#822CE7] hover:bg-[#4a0e8f]"
+                }`}
               >
-                {loading ? <Spin size="small" /> : "Add Category"}
+                {isLoading ? (
+                  <>
+                    <Spin size="small" />
+                    <span>Adding...</span>
+                  </>
+                ) : (
+                  "Add Category"
+                )}
               </button>
             </Form.Item>
           </Form>

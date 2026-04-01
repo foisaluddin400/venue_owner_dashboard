@@ -9,61 +9,37 @@ import { Navigate } from "../../Navigate";
 import { SearchOutlined } from "@ant-design/icons";
 import AddIco from "../../components/icon/AddIco";
 import EditIcon from "../../components/icon/EditIcon";
+import { useDeleteCategoryMutation, useGetCategoryAllQuery } from "../redux/api/categoryApi";
 
 const Categories = () => {
   const [deleteCategory] = useState(); // Placeholder, not used
+
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
-  const [categories, setCategories] = useState([
-    {
-      _id: "1",
-      name: "Electronics",
-      itemsUnder: '33',
-      imageUrl: "https://via.placeholder.com/100x100/007BFF/ffffff?text=Electronics"
-    },
-    {
-      _id: "2",
-      name: "Clothing",
-      itemsUnder: '33',
-      imageUrl: "https://via.placeholder.com/100x100/E63946/ffffff?text=Clothing"
-    },
-    {
-      _id: "3",
-      itemsUnder: '33',
-      name: "Books",
-      imageUrl: "https://via.placeholder.com/100x100/28A745/ffffff?text=Books"
-    },
-   
-  ]);
+const { data: categoryData, isLoading, refetch } = useGetCategoryAllQuery();
+const [deleteCategoryData] = useDeleteCategoryMutation();
+const handleDeleteCategory = async (id) => {
+  try {
+    const res = await deleteCategoryData(id).unwrap();
+    message.success(res?.message || "Category deleted successfully");
+    refetch(); // 🔥 auto refresh
+  } catch (error) {
+    console.error(error);
+    message.error(error?.data?.message || "Delete failed");
+  }
+};
+const categories = categoryData?.data?.map((item) => ({
+  _id: item._id,
+  name: item.name,
+  itemsUnder: item.totalProduct,
+})) || [];
   const [openAddModal, setOpenAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const isLoading = false; // Static for dummy data
-  const imageUrl = ""; // Dummy base URL, images are full URLs
 
-  // Filter categories based on search
-  const filteredCategories = categories.filter((cat) =>
-    cat.name.toLowerCase().includes(search.toLowerCase())
-  );
 
-  // Paginate filtered data
-  const total = filteredCategories.length;
-  const paginatedData = filteredCategories.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize
-  );
 
-  const handlePageChange = (page) => setCurrentPage(page);
-
-  const handleDeleteCategory = (id) => {
-    setCategories((prev) => prev.filter((cat) => cat._id !== id));
-    message.success("Category deleted successfully");
-    // Adjust page if current page is now empty
-    if (paginatedData.length === 1 && currentPage > 1) {
-      setCurrentPage((prev) => Math.max(1, prev - 1));
-    }
-  };
 
   // ✏️ Edit Handler
   const handleEdit = (record) => {
@@ -133,16 +109,15 @@ const Categories = () => {
         </div>
       </div>
 
-      <Table
-        dataSource={paginatedData}
-        columns={columns}
-        rowKey="_id"
-        pagination={false}
-        className="custom-table"
-        scroll={{ x: "max-content" }}
-        loading={isLoading}
-      />
-
+ <Table
+  dataSource={categories} // ✅ direct API data
+  columns={columns}
+  rowKey="_id"
+  pagination={false}
+  className="custom-table"
+  scroll={{ x: "max-content" }}
+  loading={isLoading}
+/>
      
 
       <AddCategories
